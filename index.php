@@ -1,16 +1,49 @@
 <?php 
 
 if(isset($_POST['submit'])){
-	if (isset($_POST['iduser'])) {
-        $iduser = $_POST['iduser'];
-        $pass = $_POST['pass'];
-        echo "<script type='text/JavaScript'>";
-        echo "alert('ID User: $iduser')";
-        echo "alert('ID User: $pass')";
-        echo "</script>";
-    }
+	// if (isset($_POST['iduser'])) {
+    //     $iduser = $_POST['iduser'];
+    //     $pass = $_POST['pass'];
+    //     echo "<script type='text/JavaScript'>";
+    //     echo "alert('ID User: $iduser')";
+    //     echo "alert('ID User: $pass')";
+    //     echo "</script>";
+    // }
+	$con = new mysqli("localhost", "root", "", "fsp_uas");
+	$stmt = $con->prepare("select * from users where idusers=?");   
+    $iduser = $_POST['iduser'];
+    $pass = $_POST['pass'];
+	$stmt->bind_param("s", $iduser);
+	$stmt->execute();
+	$res = $stmt->get_result();
+	if($row = $res->fetch_assoc()){
+		$salt = $row['salt'];
+		$md5pass = md5($pass);
+		$combinepass = $md5pass.$salt;
+		$finalpass = md5($combinepass);
+		if($row['password']===$finalpass){
+			$_POST['user'] = $row['idusers'];
+            $_POST['nama'] = $row['nama'];
+			echo "<script type='text/JavaScript'>";
+			echo "alert('Login Sukses')";
+			echo "</script>";
+			header("location: home.php");
+			exit();
+			// if(isset($_GET['redirect'])){
+            //     header("location: ".$_POST['redirect']);
+            //     }
+            // else{
+            //     header("location: home.php");
+            // }
+		}
+		else{
+			echo "<script type='text/JavaScript'>";
+			echo "alert('Gagal Login! Password/Username Salah!')";
+			echo "</script>";
+		}
+
+	}
 }
-session_start()
 
 ?>
 <!DOCTYPE html>
@@ -32,13 +65,20 @@ session_start()
         ?>
         <input type="submit" name="submit" value="login">
     </form>
+	<script type="text/JavaScript">
+    document.addEventListener('DOMContentLoaded', function() {
+        // Bersihkan data formulir setelah halaman dimuat
+        document.getElementById("iduser").value = "";
+        document.getElementById("pass").value = "";
+    });
+</script>
 </body>
 </html>
 
 <?php 
 // <- UNTUK DAFTAR SALT
-if(isset($_POST['submit'])){
-	$con = new mysqli("localhost", "root", "", "fsp_uas");
+// if(isset($_POST['submit'])){
+	
 
 
 // $salt = str_shuffle("project uas");
@@ -60,46 +100,6 @@ if(isset($_POST['submit'])){
 //     echo "Salt : $salt<br>";
 // }
 
-$stmt = $con->prepare("select * from users where idusers=?");   
-    $iduser = $_POST['iduser'];
-    $pass = $_POST['pass'];
-	$stmt->bind_param("s", $iduser);
-	$stmt->execute();
-	$res = $stmt->get_result();
-	if($row = $res->fetch_assoc()){
-		$salt = $row['salt'];
-		$md5pass = md5($pass);
-		$combinepass = $md5pass.$salt;
-		$finalpass = md5($combinepass);
-		if($row['password']===$finalpass){
-			$_POST['user'] = $row['idusers'];
-            $_POST['nama'] = $row['nama'];
-			echo "<script type='text/JavaScript'>";
-			echo "alert('Login Sukses')";
-			echo "</script>";
-			if(isset($_GET['redirect'])){
-                header("location: ".$_POST['redirect']);
-                }
-            else{
-                header("location: home.php");
-            }
-		}
-		else{
-			echo "<script type='text/JavaScript'>";
-			echo "alert('Gagal Login! Password/Username Salah!')";
-			echo "</script>";
-            echo "Password : ".$row['password']."<br>";
-            echo "Pembanding : $finalpass";
-		}
 
-	}
-	else{
-		echo "<script type='text/JavaScript'>";
-		echo "alert('Tidak ada data!')";
-		echo "</script>";
-		
-	}
-	$con->close();
-	$stmt->close();
-}
-?>
+// }
+// ?>
