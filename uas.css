@@ -1,5 +1,79 @@
 @media (min-width:1024px){
-    #Container-Home{
+    #container-home{
+        /* border: 1px solid #000; */
+        display: flex;
+    }
+
+    /* Ceritaku */
+    .card_generalkiri{
+        /* border: 1px solid #000; */
+        width: 25%;
+        padding: 15px;
+        margin-right: 20px;
+    }
+
+    .card_cerbung, .card_cerbung2{
+        border: 1px solid #000;
+        margin-top: 15px;
+        padding: 15px;
+        /* width: 230px; */
+        min-width: 200px;
+    }
+
+    .ceritaku{
+        display: block;
+        /* border: 1px solid #000; */
+        width: 100%;
+        height: fit-content;
+    }
+
+    #garis_vertikal{
+        border-left: 1px solid #333;
+        height: 1000px;
+        margin-right: 20px;
+    }
+
+    #btnTampilkanCeritaku{
+        margin-top: 15px;
+    }
+
+    /* Kumpulan Cerita */
+    .card_generalkanan{
+        /* border: 1px solid #000; */
+        width: 100%;
+        padding: 15px;
+        margin-right: 20px;
+    }
+    
+    .kumpulan_cerita{
+        /* border: 1px solid #000; */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    .card_cerbung2{
+        margin: 15px;
+        width: 40%;
+    }
+
+    #btnTampilKumpulanCerita{
+        margin-left: 40px;
+    }
+
+    #Hide-Container{
+        display: none;
+    }
+
+    h1, h3{
+        text-align: center;
+    }
+
+    .judulCeritaku{
+        text-align: center;
+    }
+
+    /* #Container-Home{
         display: grid;
         grid-template-columns: 1fr 0.5fr 2fr;
     }
@@ -14,7 +88,7 @@
     }
     .card_generalkanan{
         border: 1px solid blue;
-        width: 61rem;
+        width: 100%;
         min-height: 15rem;
         height: auto;
         padding: 1rem 1rem 1rem 1rem;
@@ -24,7 +98,7 @@
         grid-template-rows: auto auto auto auto;
         grid-gap: 1rem;
     }
-    .card_cerbung, .card_cerbung2{
+    .card_cerbung{
         border: 1px solid brown;
         width: 24rem;
         height: 8rem;
@@ -34,6 +108,13 @@
     }
     .card_cerbung{
         margin: 0rem 0rem 1rem 0rem;
+    }
+    .card_cerbung2{
+        border: 1px solid brown;
+        width: 24rem;
+        height: 8rem;
+        padding: 0rem 0rem 0rem 0.5rem;
+        position: relative;
     }
     #garis_vertikal{
         border-left: 1px solid #333;
@@ -65,11 +146,84 @@
     }
     #Hide-Container{
         display: none;
-    }
+    } */
     
 }
 @media (max-width:1023px ){
-    #Container-Home{
+    #container-home{
+        /* border: 1px solid #000; */
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    /* Kumpulan Cerita */
+
+    .card_generalkanan{
+        /* border: 1px solid #000; */
+        order: 1;
+        width: 100%;
+    }
+
+    .kumpulan_cerita{
+        /* border: 1px solid #000; */
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    /* .card_cerbung2{
+        margin: 15px;
+        width: 40%;
+    } */
+
+    .card_cerbung, .card_cerbung2{
+        border: 1px solid #000;
+        margin-top: 15px;
+        padding: 10px;
+        /* width: 230px; */
+        min-width: 100px;
+        margin: 15px;
+        width: 40%;
+    }
+
+    #btnTampilKumpulanCerita{
+        margin-left: 15px;
+    }
+
+    /* Ceritaku */
+
+    .card_generalkiri{
+        /* border: 1px solid #000; */
+        width: 100%;
+        order: 2;
+        padding: 15px;
+        margin-right: 20px;
+    }
+
+    .cerita_saya{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+
+    #Hide-Container{
+        display: none;
+    }
+
+    h1, h3{
+        text-align: center;
+    }
+
+    .judulCeritaku{
+        text-align: center;
+    }
+
+    #btnTampilkanCeritaku{
+        margin-left: 15px;
+    }
+
+    /* #Container-Home{
         display: grid;
         grid-template-columns: 25rem;
         grid-gap: 1rem;
@@ -141,16 +295,26 @@
     }
     #Hide-Container{
         display: none;
-    }
+    } */
 }
 @media (max-width:575px){
     #Hide-Container{
         display: block;
+        padding-left: 15px;
+        padding-right: 15px;
     }
-    #Container-Home{
+    #container-home{
         display: none;
     }
-    #Container-Kecil{
+
+    .card_cerbung_kecil{
+        border: 1px solid #000;
+        width: 100%;
+        margin-top: 15px;
+        /* background-color: lightgray; */
+    }
+    
+    /* #Container-Kecil{
         position: relative;
     }
     .card_cerbung_kecil{
@@ -168,5 +332,5 @@
     }
     .item_kecil{
         
-    }
+    } */
 }
