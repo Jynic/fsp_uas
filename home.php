@@ -112,12 +112,7 @@ $con = new mysqli("localhost", "root", "", "fsp_uas");
         (data){
             var ceritas2 = JSON.parse(data);
             $.each(ceritas2, function(i, item){
-                $(".cerita_saya").append("<div id='"+item.idcerita+"' class='card_cerbung'><h2 class='judulCeritaku'>"+item.judul+"</h2><p class='isicard'>Jumlah Paragraf : "+item.jumlah_paragraf+"</p><a href='read.php' class='isicard' id='yes'>Baca Lebih Lanjut</a></div>");
-                $(".cerita_saya").append("<form><input type='hidden' name='id' value='" + item.idcerita + "'></form>")
-                $("#yes").click(function() {
-                    var id = document.getElementById('id').submit();
-                    alert(id);
-                });
+                $(".cerita_saya").append("<div id='"+item.idcerita+"' class='card_cerbung'><h2 class='judulCeritaku'>"+item.judul+"</h2><p class='isicard'>Jumlah Paragraf : "+item.jumlah_paragraf+"</p><a href='read.php?idcerita=" + item.idcerita + "&iduser=" + id + "' class='isicard' id='yes'>Baca Lebih Lanjut</a></div>");
             });
             $(".card_generalkiri").append("<button id='btnTampilkanCeritaku'>Tampilkan Cerita Selanjutnya</button>");
             $("#btnTampilkanCeritaku").click(function(){
@@ -133,7 +128,7 @@ $con = new mysqli("localhost", "root", "", "fsp_uas");
         (data){
             var ceritas1 = JSON.parse(data);
             $.each(ceritas1, function(i, item){
-                $(".kumpulan_cerita").append("<div id='"+item.idcerita+"' class='card_cerbung2'><h2 class='judulCeritaku'>"+item.judul+"</h2><p class='isicard'>Pemilik : "+item.nama+"</p><br><p class='isicard'>Jumlah Paragraf : "+item.jumlah_paragraf+"</p><a href='read.php' class='isicard'>Baca Lebih Lanjut</a></div>");
+                $(".kumpulan_cerita").append("<div id='"+item.idcerita+"' class='card_cerbung2'><h2 class='judulCeritaku'>"+item.judul+"</h2><p class='isicard'>Pemilik : "+item.nama+"</p><br><p class='isicard'>Jumlah Paragraf : "+item.jumlah_paragraf+"</p><a href='read.php?idcerita=" + item.idcerita + "&iduser=" + id + "' class='isicard'>Baca Lebih Lanjut</a></div>");
             });
             $(".card_generalkanan").append("<button id='btnTampilKumpulanCerita'>Tampilkan Cerita Selanjutnya</button>");
             $("#btnTampilKumpulanCerita").click(function(){
@@ -167,7 +162,7 @@ $con = new mysqli("localhost", "root", "", "fsp_uas");
                 (data){
                     var ceritas1 = JSON.parse(data);
                     $.each(ceritas1, function(i, item){
-                        $("#card_cerita").append("<div id='"+item.idcerita+"' class='card_cerbung_kecil'><h2 class='judulCeritaku'>"+item.judul+"</h2><p class='isicard'>Pemilik : "+item.nama+"</p><br><p class='isicard'>Jumlah Paragraf : "+item.jumlah_paragraf+"</p><a href='read.php' class='isicard'>Baca Lebih Lanjut</a></div>");
+                        $("#card_cerita").append("<div id='"+item.idcerita+"' class='card_cerbung_kecil'><h2 class='judulCeritaku'>"+item.judul+"</h2><p class='isicard'>Pemilik : "+item.nama+"</p><br><p class='isicard'>Jumlah Paragraf : "+item.jumlah_paragraf+"</p><a href='read.php?idcerita=" + item.idcerita + "&iduser=" + id + "' class='isicard'>Baca Lebih Lanjut</a></div>");
                     });
                     // $("#card_cerita").append("<button id='btnTampilKumpulanCerita'>Tampilkan Cerita Selanjutnya</button>");
                     
@@ -183,7 +178,7 @@ $con = new mysqli("localhost", "root", "", "fsp_uas");
                 (data){
                     var ceritas1 = JSON.parse(data);
                     $.each(ceritas1, function(i, item){
-                        $("#card_cerita").append("<div id='"+item.idcerita+"' class='card_cerbung_kecil'><h2 class='judulCeritaku'>"+item.judul+"</h2><p class='isicard'>Pemilik : "+item.nama+"</p><br><p class='isicard'>Jumlah Paragraf : "+item.jumlah_paragraf+"</p><a href='read.php' class='isicard'>Baca Lebih Lanjut</a></div>");
+                        $("#card_cerita").append("<div id='"+item.idcerita+"' class='card_cerbung_kecil'><h2 class='judulCeritaku'>"+item.judul+"</h2><p class='isicard'>Pemilik : "+item.nama+"</p><br><p class='isicard'>Jumlah Paragraf : "+item.jumlah_paragraf+"</p><a href='read.php?idcerita=" + item.idcerita + "&iduser=" + id + "' class='isicard'>Baca Lebih Lanjut</a></div>");
                     });
                     // $("#card_cerita").append("<button id='btnTampilKumpulanCerita'>Tampilkan Cerita Selanjutnya</button>");
                     
@@ -198,7 +193,7 @@ $con = new mysqli("localhost", "root", "", "fsp_uas");
             (data){
                 var ceritas1 = JSON.parse(data);
                 $.each(ceritas1, function(i, item){
-                    $("#card_cerita").append("<div id='"+item.idcerita+"' class='card_cerbung_kecil'><h2 class='judulCeritaku'>"+item.judul+"</h2><p class='isicard'>Pemilik : "+item.nama+"</p><br><p class='isicard'>Jumlah Paragraf : "+item.jumlah_paragraf+"</p><a href='read.php' class='isicard'>Baca Lebih Lanjut</a></div>");
+                    $("#card_cerita").append("<div id='"+item.idcerita+"' class='card_cerbung_kecil'><h2 class='judulCeritaku'>"+item.judul+"</h2><p class='isicard'>Pemilik : "+item.nama+"</p><br><p class='isicard'>Jumlah Paragraf : "+item.jumlah_paragraf+"</p><a href='read.php?idcerita=" + item.idcerita + "&iduser=" + id + "' class='isicard'>Baca Lebih Lanjut</a></div>");
                 });
                 
             });
