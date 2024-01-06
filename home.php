@@ -146,6 +146,18 @@ $con = new mysqli("localhost", "root", "", "fsp_uas");
             });
         });
 
+        $("#title").append("<h1>Kumpulan Cerita</h1>");
+
+                $.post('ajax_paging_kanan.php', {iduser:id, limit:limitcer}).done(function
+                (data){
+                    var ceritas1 = JSON.parse(data);
+                    $.each(ceritas1, function(i, item){
+                        $("#card_cerita").append("<div id='"+item.idcerita+"' class='card_cerbung_kecil'><h2 class='judulCeritaku'>"+item.judul+"</h2><p class='isicard'>Pemilik : "+item.nama+"</p><br><p class='isicard'>Jumlah Paragraf : "+item.jumlah_paragraf+"</p><a href='read.php?idcerita=" + item.idcerita + "&iduser=" + id + "' class='isicard'>Baca Lebih Lanjut</a></div>");
+                    });
+                    // $("#card_cerita").append("<button id='btnTampilKumpulanCerita'>Tampilkan Cerita Selanjutnya</button>");
+                    
+                });
+
         $("#cbokategori").change(function(){
             var limit = "<?php echo $limit; ?>";
             var limitcer = 4;
@@ -203,6 +215,8 @@ $con = new mysqli("localhost", "root", "", "fsp_uas");
         $("#new").click(function() {
             window.location.href = "new.php?id="+id;
         });
+
+        
 
 
 </script>
