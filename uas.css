@@ -150,4 +150,23 @@
     #Container-Home{
         display: none;
     }
+    #Container-Kecil{
+        position: relative;
+    }
+    .card_cerbung_kecil{
+        border: 1px solid blue;
+        width: 5rem;
+        height: 5rem;
+        background-color: lightgray;
+    }
+    #card_cerita{
+        width: 50rem;
+        min-height: 1rem;
+        height: auto;
+        margin-right: 2rem ;
+        padding: 1rem;
+    }
+    .item_kecil{
+        
+    }
 }

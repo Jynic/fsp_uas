@@ -84,9 +84,9 @@ $con = new mysqli("localhost", "root", "", "fsp_uas");
             });
             
             
-        });
+            });
         
-        </script>
+            </script>
             
         </div>
     </div>
@@ -98,7 +98,43 @@ $con = new mysqli("localhost", "root", "", "fsp_uas");
             <option id='optCeritaku' value="ceritaku">Ceritaku</option>
         </select>
         <div id='Container-Kecil'>
-            <h2></h2>
+            <h1>Kumpulan Cerita</h1>
+            <div id='card_cerita'>
+                <div class='card_cerbung_kecil'>
+                    <h2 class='judulCeritaku'>CERIAKU</h2>
+                    <p class='item_kecil'>penulis : Dummy</p>
+                    <p class='item_kecil'>jumlah par : 2</p>
+                </div>
+                <?php 
+                $idusers = "160421054";
+                $limit = "%";
+                if(isset($_GET['limitkecil'])){
+                    $limit = $_GET['limitkecil'];
+                }else{
+                    $limit = "4";
+                }
+                
+                ?>
+                <script>
+                    
+                var id = "<?php echo $idusers; ?>";
+                var limit = "<?php echo $limit; ?>";
+                $.post('ajax_paging_kanan.php', {iduser:id, limit:limit}).done(function
+                (data){
+                    var ceritas = JSON.parse(data);
+                    $.each(ceritas, function(i, item){
+                        $("#card_cerita").append("<div id='"+item.idcerita+"' class='card_cerbung_kecil'><h2 class='judulCeritaku'>"+item.judul+"</h2><p class=''>Pemilik : "+item.nama+"</p><br><p class=''>Jumlah Paragraf : "+item.jumlah_paragraf+"</p><a href class='isicard'>Baca Lebih Lanjut</a></div>");
+                    });
+                    $(".card_cerita").append("<button id='btnTampilKumpulanCerita'>Tampilkan Cerita Selanjutnya</button>");
+                    $("#btnTampilKumpulanCerita").click(function(){
+                window.location.href = "home.php?limitkecil=100";
+                });
+                
+                
+                });
+            
+                </script>
+            </div>
         </div>
     </div>
     <script>
