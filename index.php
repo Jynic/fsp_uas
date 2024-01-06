@@ -1,7 +1,47 @@
 <?php 
+
+if(isset($_POST['submit'])){
+	if (isset($_POST['iduser'])) {
+        $iduser = $_POST['iduser'];
+        $pass = $_POST['pass'];
+        echo "<script type='text/JavaScript'>";
+        echo "alert('ID User: $iduser')";
+        echo "alert('ID User: $pass')";
+        echo "</script>";
+    }
+}
+session_start()
+
+?>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Index</title>
+</head>
+<body>
+	<form method="POST" action="index.php">
+        id: <input type="text" name="iduser"><br>
+        password: <input type="password" name="pass"><br>
+        <?php 
+            if(isset($_GET['redirect'])){
+                $url = $_GET['redirect'];
+                echo "<input type='hidden' name='redirect' value='$url'>";
+            }
+        ?>
+        <input type="submit" name="submit" value="login">
+    </form>
+</body>
+</html>
+
+<?php 
 // <- UNTUK DAFTAR SALT
-$con = new mysqli("localhost", "root", "", "fsp_uas");
-// $salt = str_shuffle("project uas");      
+if(isset($_POST['submit'])){
+	$con = new mysqli("localhost", "root", "", "fsp_uas");
+
+
+// $salt = str_shuffle("project uas");
 // $md5pass = md5("160421054");
 // $combinepass = $md5pass.$salt;
 // $finalpass = md5($combinepass);
@@ -21,26 +61,35 @@ $con = new mysqli("localhost", "root", "", "fsp_uas");
 // }
 
 $stmt = $con->prepare("select * from users where idusers=?");   
-    $iduser = "160421054";
+    $iduser = $_POST['iduser'];
+    $pass = $_POST['pass'];
 	$stmt->bind_param("s", $iduser);
 	$stmt->execute();
 	$res = $stmt->get_result();
 	if($row = $res->fetch_assoc()){
 		$salt = $row['salt'];
-		$md5pass = md5("160421054");
+		$md5pass = md5($pass);
 		$combinepass = $md5pass.$salt;
 		$finalpass = md5($combinepass);
 		if($row['password']===$finalpass){
+			$_POST['user'] = $row['idusers'];
+            $_POST['nama'] = $row['nama'];
 			echo "<script type='text/JavaScript'>";
 			echo "alert('Login Sukses')";
 			echo "</script>";
+			if(isset($_GET['redirect'])){
+                header("location: ".$_POST['redirect']);
+                }
+            else{
+                header("location: home.php");
+            }
 		}
 		else{
 			echo "<script type='text/JavaScript'>";
 			echo "alert('Gagal Login! Password/Username Salah!')";
 			echo "</script>";
             echo "Password : ".$row['password']."<br>";
-            echo "Pembamding : $finalpass";
+            echo "Pembanding : $finalpass";
 		}
 
 	}
@@ -50,4 +99,7 @@ $stmt = $con->prepare("select * from users where idusers=?");
 		echo "</script>";
 		
 	}
+	$con->close();
+	$stmt->close();
+}
 ?>
