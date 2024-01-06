@@ -20,6 +20,7 @@ $con = new mysqli("localhost", "root", "", "fsp_uas");
             <div class="ceritaku">
                 <h2>Ceritaku</h2><br>
                 <button id="new">Buat Cerita Baru</button>
+                <button id='logout'>Log Out</button>
             </div>
             <div class="cerita_saya">
                 <?php 
@@ -215,6 +216,10 @@ $con = new mysqli("localhost", "root", "", "fsp_uas");
         $("#new").click(function() {
             window.location.href = "new.php?id="+id;
         });
+        $("#logout").click(function(){
+            window.location.href="index.php";
+            exit();
+        })
 
         
 
